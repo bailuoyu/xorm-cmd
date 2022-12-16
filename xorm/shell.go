@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/bailuoyu/xorm"
 	"github.com/go-xorm/core"
-	"github.com/go-xorm/xorm"
 )
 
 var CmdShell = &Command{

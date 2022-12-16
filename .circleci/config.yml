@@ -8,7 +8,7 @@ jobs:
       # specify the version
       - image: circleci/golang:1.10
 
-    working_directory: /go/src/github.com/go-xorm/cmd
+    working_directory: /go/src/github.com/bailuoyu/xorm-cmd
     steps:
       - checkout
 

@@ -17,8 +17,8 @@ import (
 	"text/template"
 
 	"github.com/bailuoyu/xorm"
-	"github.com/go-xorm/core"
 	"github.com/lunny/log"
+	"xorm.io/core"
 
 	_ "github.com/denisenkom/go-mssqldb"
 	_ "github.com/go-sql-driver/mysql"

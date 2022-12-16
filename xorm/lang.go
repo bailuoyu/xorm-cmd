@@ -8,8 +8,7 @@ import (
 	"io/ioutil"
 	"strings"
 	"text/template"
-
-	"github.com/go-xorm/core"
+	"xorm.io/core"
 )
 
 type LangTmpl struct {

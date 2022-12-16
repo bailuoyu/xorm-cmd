@@ -9,7 +9,7 @@ import (
 	"os"
 
 	"github.com/bailuoyu/xorm"
-	"github.com/go-xorm/core"
+	"xorm.io/core"
 )
 
 var CmdSource = &Command{

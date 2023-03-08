@@ -3,7 +3,7 @@ module github.com/bailuoyu/xorm-cmd/xorm
 go 1.19
 
 require (
-	github.com/bailuoyu/xorm v0.0.0-20221216052035-c1fb6430d8d9
+	github.com/bailuoyu/xorm v0.0.0-20230308033055-899bcf01e0de
 	github.com/denisenkom/go-mssqldb v0.0.0-20190707035753-2be1aa521ff4
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/lib/pq v1.0.0

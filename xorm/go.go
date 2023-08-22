@@ -234,7 +234,7 @@ func tag(table *core.Table, col *core.Column) string {
 	}
 
 	if supportComment && col.Comment != "" {
-		res = append(res, fmt.Sprintf("comment('%s')", col.Comment))
+		res = append(res, fmt.Sprintf("comment('%s')", strings.Replace(col.Comment, "\n", " ", -1)))
 	}
 
 	names := make([]string, 0, len(col.Indexes))
@@ -349,7 +349,7 @@ func eRemark(table *core.Table, col *core.Column) string {
 	}
 
 	if supportComment && col.Comment != "" {
-		rks = append(rks, fmt.Sprintf("comment:%s", col.Comment))
+		rks = append(rks, fmt.Sprintf("comment:%s", strings.Replace(col.Comment, "\n", " ", -1)))
 	}
 
 	names := make([]string, 0, len(col.Indexes))

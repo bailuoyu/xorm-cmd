@@ -23,6 +23,7 @@ var (
 			"Tag":        tag,
 			"eTag":       eTag,
 			"eRemark":    eRemark,
+			"tablePre":   tablePre,
 			"UnTitle":    unTitle,
 			"gt":         gt,
 			"getCol":     getCol,
@@ -417,6 +418,10 @@ func eRemark(table *core.Table, col *core.Column) string {
 	} else {
 		return ""
 	}
+}
+
+func tablePre() string {
+	return prefix
 }
 
 func include(source []string, target string) bool {

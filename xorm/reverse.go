@@ -51,6 +51,8 @@ func init() {
 }
 
 var (
+	lang                                         string   = "go"
+	prefix                                       string   = "" //[SWH|+]
 	genJson                                      bool     = false
 	ignoreColumnsJSON, created, updated, deleted []string = []string{}, []string{"created_at"}, []string{"updated_at"}, []string{"deleted_at"}
 )
@@ -138,8 +140,8 @@ func runReverse(cmd *Command, args []string) {
 
 	var langTmpl LangTmpl
 	var ok bool
-	var lang string = "go"
-	var prefix string = "" //[SWH|+]
+	//var lang string = "go"
+	//var prefix string = "" //[SWH|+]
 
 	cfgPath := path.Join(dir, "config")
 	info, err := os.Stat(cfgPath)

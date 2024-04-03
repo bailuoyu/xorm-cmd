@@ -333,6 +333,8 @@ func eTag(col *core.Column) string {
 		} else if include(deleted, col.Name) {
 			res = append(res, "deleted")
 		}
+	} else if col.Default != "" {
+		res = append(res, "default:"+col.Default)
 	}
 
 	if len(res) > 0 {
@@ -345,9 +347,9 @@ func eTag(col *core.Column) string {
 func eRemark(table *core.Table, col *core.Column) string {
 	var rks []string
 
-	if col.Default != "" {
-		rks = append(rks, "default:"+col.Default)
-	}
+	//if col.Default != "" {
+	//	rks = append(rks, "default:"+col.Default)
+	//}
 
 	if supportComment && col.Comment != "" {
 		rks = append(rks, fmt.Sprintf("comment:%s", strings.Replace(col.Comment, "\n", " ", -1)))

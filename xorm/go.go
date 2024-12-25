@@ -184,7 +184,8 @@ func genGoImports(tables []*core.Table) map[string]string {
 
 	for _, table := range tables {
 		for _, col := range table.Columns() {
-			if typestring(col) == "time.Time" {
+			s := typestring(col)
+			if s == "time.Time" || s == "*time.Time" {
 				imports["time"] = "time"
 			}
 		}
@@ -196,7 +197,9 @@ func typestring(col *core.Column) string {
 	st := col.SQLType
 	t := core.SQLType2Type(st)
 	s := t.String()
-	if s == "[]uint8" {
+	if s == "time.Time" && col.Nullable { //如果是time.Time类型，并且是nullable，则返回指针类型
+		return "*time.Time"
+	} else if s == "[]uint8" {
 		return "[]byte"
 	}
 	return s
@@ -215,9 +218,9 @@ func tag(table *core.Table, col *core.Column) string {
 	if col.IsPrimaryKey {
 		res = append(res, "pk")
 	}
-	if col.Default != "" {
-		res = append(res, "default "+col.Default)
-	}
+	//if col.Default != "" {
+	//	res = append(res, "default "+col.Default)
+	//}
 	if col.IsAutoIncrement {
 		res = append(res, "autoincr")
 	}
@@ -347,10 +350,6 @@ func eTag(col *core.Column) string {
 func eRemark(table *core.Table, col *core.Column) string {
 	var rks []string
 
-	//if col.Default != "" {
-	//	rks = append(rks, "default:"+col.Default)
-	//}
-
 	if supportComment && col.Comment != "" {
 		rks = append(rks, fmt.Sprintf("comment:%s", strings.Replace(col.Comment, "\n", " ", -1)))
 	}
@@ -414,6 +413,10 @@ func eRemark(table *core.Table, col *core.Column) string {
 		nstr += ")"
 	}
 	rks = append(rks, nstr)
+
+	if col.Default != "" {
+		rks = append(rks, fmt.Sprintf("default:%s", col.Default))
+	}
 
 	if len(rks) > 0 {
 		return strings.Join(rks, ";")

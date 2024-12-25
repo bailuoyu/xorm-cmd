@@ -336,9 +336,10 @@ func eTag(col *core.Column) string {
 		} else if include(deleted, col.Name) {
 			res = append(res, "deleted")
 		}
-	} else if col.Default != "" {
-		res = append(res, "default:"+col.Default)
 	}
+	//else if col.Default != "" {
+	//	res = append(res, "default:"+col.Default)
+	//}
 
 	if len(res) > 0 {
 		return "xorm:\"" + strings.Join(res, " ") + "\""
